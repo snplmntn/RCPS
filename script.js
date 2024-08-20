@@ -166,6 +166,7 @@ const slider = function () {
 
   let curSlide = 0;
   const maxSlide = slides.length - 1;
+  let autoSlideInterval;
 
   const createDots = function () {
     slides.forEach(function (_, i) {
@@ -219,17 +220,33 @@ const slider = function () {
     activateDot(0);
   };
 
+  const startAutoSlide = function () {
+    autoSlideInterval = setInterval(nextSlide, 5000);
+  };
+
+  const resetAutoSlide = function () {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  };
+
   init();
 
   // Slide next to right
-  btnRight.addEventListener("click", nextSlide);
+  btnRight.addEventListener("click", () => {
+    nextSlide();
+    resetAutoSlide();
+  });
 
   // Slide next to left
-  btnLeft.addEventListener("click", prevSlide);
+  btnLeft.addEventListener("click", () => {
+    prevSlide();
+    resetAutoSlide();
+  });
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft") prevSlide();
     else if (e.key === "ArrowRight") nextSlide();
+    resetAutoSlide();
   });
 
   dotContainer.addEventListener("click", function (e) {
@@ -237,14 +254,15 @@ const slider = function () {
       const { slide } = e.target.dataset;
       goToSlide(slide);
       activateDot(slide);
+      resetAutoSlide();
     }
   });
 
   if (firstLoad) {
     firstLoad = false;
-    console.log(firstLoad);
+    startAutoSlide();
   } else {
-    setTimeout(nextSlide, 5000);
+    startAutoSlide();
   }
 };
 
