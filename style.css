@@ -270,40 +270,107 @@ h4 {
 
 /* PRODUCT SLIDER  */
 .featured-product-wrapper {
-  width: 100%;
-  max-height: 35rem;
-  border: 1px solid black;
-  overflow-x: auto;
-  overflow-y: hidden;
+  margin: 5rem auto 5rem auto;
+  width: 80%;
+  /* height: 40rem; */
+  background-color: #0099ff;
+  border-radius: 20px;
   display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h1 {
+    color: white;
+    text-shadow: 2px 2px rgb(37, 37, 37);
+    margin-top: 3rem;
+    line-height: 1;
+  }
 }
 
-.featured-product-wrapper::-webkit-scrollbar {
+.product-container {
+  display: flex;
+  height: 35rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  user-select: none;
+  width: 97.5%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.product-container::-webkit-scrollbar {
   width: 0;
 }
 
 .product {
   min-width: 20rem;
-  margin: 2.5rem;
-  height: 110px;
+  /* height: 95%; */
   line-height: 110px;
-  background-color: rgb(105, 105, 105)255, 255, 255;
-}
-
-.product {
-  padding: 5px;
-  border: 1px solid black;
+  margin: 1rem 0.5rem;
+  line-height: 1.25;
+  background-color: rgb(255, 249, 238);
+  border-radius: 15px;
+  text-align: center;
+  h2 {
+    font-size: 14px;
+  }
 }
 
 .active {
   cursor: grabbing;
+  transform: scale(1.01);
+  transition: transform 0.25s;
+}
+
+/* Product  */
+.product-brand {
+  display: flex;
+  height: 4rem;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 16px;
+  margin-top: 1rem;
+}
+
+.product-discount {
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 12px;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  line-height: 1.75;
+}
+
+.product-img {
+  height: 17.5rem;
+  width: 15rem;
+  margin: 1rem;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 10rem;
+}
+
+.original-price {
+  text-decoration-line: line-through;
+  font-size: 14px;
+  align-self: flex-end;
+  color: gray;
 }
 
 /* OPERATIONS */
 .operations {
   max-width: 100rem;
   margin: 12rem auto 0 auto;
-
   background-color: #fff;
 }
 
@@ -691,4 +758,3 @@ div.slide-left p {
     width: 100%;
   }
 }
-
