@@ -317,27 +317,31 @@ const productSlider = () => {
     wrapper.classList.add("active");
     startX = e.pageX - wrapper.offsetLeft;
     scrollLeft = wrapper.scrollLeft;
+    console.log(1);
+
+    wrapper.addEventListener("mousemove", (e) => {
+      e.preventDefault();
+      if (!isDown) return;
+
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = x - startX;
+      wrapper.scrollLeft = scrollLeft - walk;
+      console.log(4);
+    });
   });
   wrapper.addEventListener("mouseleave", () => {
     isDown = false;
     wrapper.classList.remove("active");
     startX = 0;
     scrollLeft = 0;
+    console.log(2);
   });
   wrapper.addEventListener("mouseup", () => {
     isDown = false;
     wrapper.classList.remove("active");
     startX = 0;
     scrollLeft = 0;
-  });
-
-  wrapper.addEventListener("mousemove", (e) => {
-    e.preventDefault();
-    if (!isDown) return;
-
-    const x = e.pageX - wrapper.offsetLeft;
-    const walk = x - startX;
-    wrapper.scrollLeft = scrollLeft - walk;
+    console.log(3);
   });
 };
 
