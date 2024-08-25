@@ -56,7 +56,6 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
   // Matching strategy
   if (e.target.classList.contains("nav__link")) {
     const id = e.target.getAttribute("href");
-    console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
@@ -306,43 +305,39 @@ slider();
 //   e.returnValue = '';
 // });
 
-const productSlider = () => {
-  const wrapper = document.querySelector(".product-container");
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+const bestProductSlider = (container) => {
+  const wrappers = document.querySelectorAll(container);
 
-  wrapper.addEventListener("mousedown", (e) => {
-    isDown = true;
-    wrapper.classList.add("active");
-    startX = e.pageX - wrapper.offsetLeft;
-    scrollLeft = wrapper.scrollLeft;
-    console.log(1);
+  wrappers.forEach((wrapper) => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    wrapper.addEventListener("mousedown", (e) => {
+      isDown = true;
+      wrapper.classList.add("active");
+      startX = e.pageX - wrapper.offsetLeft;
+      scrollLeft = wrapper.scrollLeft;
+    });
 
     wrapper.addEventListener("mousemove", (e) => {
-      e.preventDefault();
       if (!isDown) return;
-
+      e.preventDefault();
       const x = e.pageX - wrapper.offsetLeft;
       const walk = x - startX;
       wrapper.scrollLeft = scrollLeft - walk;
-      console.log(4);
     });
-  });
-  wrapper.addEventListener("mouseleave", () => {
-    isDown = false;
-    wrapper.classList.remove("active");
-    startX = 0;
-    scrollLeft = 0;
-    console.log(2);
-  });
-  wrapper.addEventListener("mouseup", () => {
-    isDown = false;
-    wrapper.classList.remove("active");
-    startX = 0;
-    scrollLeft = 0;
-    console.log(3);
+
+    wrapper.addEventListener("mouseleave", () => {
+      isDown = false;
+      wrapper.classList.remove("active");
+    });
+
+    wrapper.addEventListener("mouseup", () => {
+      isDown = false;
+      wrapper.classList.remove("active");
+    });
   });
 };
 
-productSlider();
+bestProductSlider(".product-container");
