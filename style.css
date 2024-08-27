@@ -142,7 +142,8 @@ img {
   float: left;
 }
 
-.logo-text {
+.logo-text::before {
+  content: "ecamie";
   float: right;
   font-size: 20px;
   text-align: center;
@@ -418,6 +419,56 @@ h4 {
   color: gray;
 }
 
+/* product-details  */
+.product-wrapper {
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
+.product-details-img {
+  width: 25%;
+  height: 100%;
+  margin: 1rem auto;
+  border-radius: 10px;
+}
+
+.product-details {
+  /* background-color: black; */
+  border-radius: 10px;
+  margin: 1rem auto;
+  width: 70%;
+  /* color: white; */
+  text-align: left;
+
+  h1 {
+    font-size: 40px;
+    margin-left: 2rem;
+  }
+
+  h2 {
+    font-size: 20px;
+    color: red;
+    margin-left: 2rem;
+  }
+
+  h3 {
+    font-size: 16px;
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 2rem;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+}
 /* OPERATIONS */
 .operations {
   max-width: 100rem;
@@ -683,5 +734,17 @@ div.slide-left p {
   to {
     margin-left: -95%;
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  div.slide-left {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .logo-text::before {
+    content: "";
   }
 }
