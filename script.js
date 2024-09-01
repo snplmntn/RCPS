@@ -122,17 +122,17 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 
 // const observer = new IntersectionObserver(obsCallBack, obsOptions);
 // observer.observe(section1);
-const navHeight = nav.getBoundingClientRect().height;
 const mobileNav = document.querySelector(".nav-links");
+const navHeight = mobileNav.getBoundingClientRect().height;
 const stickyNav = function (entries) {
   const [entry] = entries;
 
   if (!entry.isIntersecting) {
     nav.classList.add("sticky");
-    // mobileNav.classList.add("sticky");
+    mobileNav.classList.add("sticky");
   } else {
     nav.classList.remove("sticky");
-    // mobileNav.classList.remove("sticky");
+    mobileNav.classList.remove("sticky");
   }
 };
 const headerObserver = new IntersectionObserver(stickyNav, {
@@ -142,23 +142,23 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
-// Reveal sections
-const allSections = document.querySelectorAll(".section");
-const revealSection = function (entries, observer) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove("section--hidden");
-  observer.unobserve(entry.target);
-};
-const sectionObserver = new IntersectionObserver(revealSection, {
-  root: null,
-  threshold: 0.15,
-});
+// // Reveal sections
+// const allSections = document.querySelectorAll(".section");
+// const revealSection = function (entries, observer) {
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) return;
+//   entry.target.classList.remove("section--hidden");
+//   observer.unobserve(entry.target);
+// };
+// const sectionObserver = new IntersectionObserver(revealSection, {
+//   root: null,
+//   threshold: 0.15,
+// });
 
-allSections.forEach(function (section) {
-  sectionObserver.observe(section);
-  // section.classList.add('section--hidden');
-});
+// allSections.forEach(function (section) {
+//   sectionObserver.observe(section);
+//   // section.classList.add('section--hidden');
+// });
 
 // Slider
 const slider = function () {
