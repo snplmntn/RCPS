@@ -123,12 +123,17 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 // const observer = new IntersectionObserver(obsCallBack, obsOptions);
 // observer.observe(section1);
 const navHeight = nav.getBoundingClientRect().height;
-
+const mobileNav = document.querySelector(".nav-links");
 const stickyNav = function (entries) {
   const [entry] = entries;
 
-  if (!entry.isIntersecting) nav.classList.add("sticky");
-  else nav.classList.remove("sticky");
+  if (!entry.isIntersecting) {
+    nav.classList.add("sticky");
+    // mobileNav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+    // mobileNav.classList.remove("sticky");
+  }
 };
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
@@ -341,3 +346,18 @@ const bestProductSlider = (container) => {
 };
 
 bestProductSlider(".product-container");
+
+const navMobileToggle = () => {
+  const button = document.querySelector(".icon");
+  const navLinks = document.querySelector(".nav-links");
+
+  button.addEventListener("click", () => {
+    if (navLinks.style.display === "block") {
+      navLinks.style.display = "none";
+    } else {
+      navLinks.style.display = "block";
+    }
+  });
+};
+
+navMobileToggle();
