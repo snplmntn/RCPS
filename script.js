@@ -40,23 +40,17 @@ document.addEventListener("keydown", function (e) {
 //////////////////////////////////////////////////////////////////////////
 // PAGE NAVIGATION
 
-// document.querySelectorAll('.nav__link').forEach(function (el) {
-//   el.addEventListener('click', function (e) {
-//     e.preventDefault();
-//     const id = this.getAttribute('href');
-//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-//   });
-// });
-
-// 1. Add event listener to common parent element
-// 2. Determine what element orignated the event
-
 document.querySelector(".nav__links").addEventListener("click", function (e) {
   e.preventDefault();
   // Matching strategy
   if (e.target.classList.contains("nav__link")) {
     const id = e.target.getAttribute("href");
-    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    if (id.startsWith("#")) {
+      e.preventDefault();
+      document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = id;
+    }
   }
 });
 
@@ -350,6 +344,8 @@ bestProductSlider(".product-container");
 const navMobileToggle = () => {
   const button = document.querySelector(".icon");
   const navLinks = document.querySelector(".nav-links");
+
+  console.log(button);
 
   button.addEventListener("click", () => {
     if (navLinks.style.display === "block") {
