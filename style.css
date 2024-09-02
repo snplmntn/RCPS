@@ -208,20 +208,6 @@ img {
   align-items: center;
 }
 
-/* .header__title {
-  flex: 1;
-
-  max-width: 115rem;
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  row-gap: 3rem;
-  align-content: center;
-  justify-content: center;
-
-  align-items: start;
-  justify-items: start;
-} */
-
 h1 {
   font-size: 5.5rem;
   line-height: 1.35;

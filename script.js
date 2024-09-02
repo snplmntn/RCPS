@@ -92,30 +92,6 @@ nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
 // Sticky navigation
-// const initialCords = section1.getBoundingClientRect();
-// console.log(initialCords);
-
-// window.addEventListener('scroll', function () {
-//   console.log(window.scrollY);
-
-//   if (this.window.scrollY > initialCords.top) nav.classList.add('sticky');
-//   else nav.classList.remove('sticky');
-// });
-
-// sticky navigation: interesection observer api
-// const obsCallBack = function (entries, observer) {
-//   entries.forEach(entry => {
-//     console.log(entry);
-//   });
-// };
-
-// const obsOptions = {
-//   root: null,
-//   thereshold: [0, 0.2],
-// };
-
-// const observer = new IntersectionObserver(obsCallBack, obsOptions);
-// observer.observe(section1);
 const mobileNav = document.querySelector(".nav-links");
 const navHeight = mobileNav.getBoundingClientRect().height;
 const stickyNav = function (entries) {
@@ -135,24 +111,6 @@ const headerObserver = new IntersectionObserver(stickyNav, {
   threshold: 0,
 });
 headerObserver.observe(header);
-
-// // Reveal sections
-// const allSections = document.querySelectorAll(".section");
-// const revealSection = function (entries, observer) {
-//   const [entry] = entries;
-//   if (!entry.isIntersecting) return;
-//   entry.target.classList.remove("section--hidden");
-//   observer.unobserve(entry.target);
-// };
-// const sectionObserver = new IntersectionObserver(revealSection, {
-//   root: null,
-//   threshold: 0.15,
-// });
-
-// allSections.forEach(function (section) {
-//   sectionObserver.observe(section);
-//   // section.classList.add('section--hidden');
-// });
 
 // Slider
 const slider = function () {
@@ -266,51 +224,16 @@ const slider = function () {
 
 slider();
 
-/////////////////////////////////////////////////////////////////////////
-// console.log(document.documentElement);
-// const header = document.querySelector('.header');
-// const allBUttons = document.getElementsByTagName('button');
-// console.log(allBUttons);
-
-// const message = document.createElement('div');
-// message.classList.add('cookie-message');
-// // message.textContent = 'We use cookies for improved functionality and analytics.';
-// message.innerHTML =
-//   'We use cookies for improved functionality and analytics. <button class = "btn btn--close-cookie">Got it!</button>';
-
-// header.append(message);
-
-// document
-//   .querySelector('.btn--close-cookie')
-//   .addEventListener('click', function () {
-//     message.remove();
-//   });
-
-// message.style.backgroundColor = '#37383d';
-// message.style.width = '120%';
-// message.style.height =
-//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
-
-// const h1 = document.querySelector('h1');
-// console.log(h1.querySelectorAll('.highlight'));
-
-// document.addEventListener('DOMContentLoaded', function (e) {
-//   console.log('HTMl parsed');
-// });
-
-// window.addEventListener('beforeunload', function (e) {
-//   e.preventDefault();
-//   console.log(e);
-//   e.returnValue = '';
-// });
-
 const bestProductSlider = (container) => {
   const wrappers = document.querySelectorAll(container);
+  const bestProducts = document.querySelectorAll(".best-product");
+  const products = document.querySelectorAll(".product");
 
   wrappers.forEach((wrapper) => {
     let isDown = false;
     let startX;
     let scrollLeft;
+    let scrolled = false;
 
     wrapper.addEventListener("mousedown", (e) => {
       isDown = true;
@@ -325,6 +248,7 @@ const bestProductSlider = (container) => {
       const x = e.pageX - wrapper.offsetLeft;
       const walk = x - startX;
       wrapper.scrollLeft = scrollLeft - walk;
+      scrolled = true;
     });
 
     wrapper.addEventListener("mouseleave", () => {
@@ -335,6 +259,20 @@ const bestProductSlider = (container) => {
     wrapper.addEventListener("mouseup", () => {
       isDown = false;
       wrapper.classList.remove("active");
+    });
+
+    bestProducts.forEach((product) => {
+      product.addEventListener("click", (e) => {
+        const id = product.getAttribute("href");
+        if (!scrolled) window.location.href = id;
+      });
+    });
+
+    products.forEach((product) => {
+      product.addEventListener("click", (e) => {
+        const id = product.getAttribute("href");
+        if (!scrolled) window.location.href = id;
+      });
     });
   });
 };
