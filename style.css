@@ -54,6 +54,7 @@ body {
   text-transform: uppercase;
   color: #ff8a8a;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .section__header {
@@ -229,7 +230,6 @@ h4 {
 .featured-product-wrapper {
   margin: 5rem auto 5rem auto;
   width: 80%;
-  /* height: 40rem; */
   background-color: #0099ff;
   border-radius: 20px;
   display: flex;
@@ -327,7 +327,7 @@ h4 {
 
 /* All Products  */
 .piso-wifi-product {
-  background-color: #0076c5;
+  background-color: #0099ff;
   border-radius: 20px;
   height: 32rem;
 }
@@ -727,6 +727,10 @@ div.slide-left p {
     display: none;
   }
 
+  .featured-product-wrapper {
+    width: 90%;
+  }
+
   /* product page  */
   .product-wrapper {
     width: 100%;
@@ -747,10 +751,6 @@ div.slide-left p {
 }
 
 @media only screen and (max-width: 800px) {
-  .logo-text::before {
-    content: "";
-  }
-
   .header {
     min-height: 5vh;
   }
@@ -784,6 +784,13 @@ div.slide-left p {
 }
 
 @media only screen and (max-width: 750px) {
+  .logo-text::before {
+    content: "";
+  }
+
+  .featured-product-wrapper {
+    width: 95%;
+  }
   .section__header {
     font-size: 30px;
   }

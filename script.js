@@ -283,8 +283,6 @@ const navMobileToggle = () => {
   const button = document.querySelector(".icon");
   const navLinks = document.querySelector(".nav-links");
 
-  console.log(button);
-
   button.addEventListener("click", () => {
     if (navLinks.style.display === "block") {
       navLinks.style.display = "none";
